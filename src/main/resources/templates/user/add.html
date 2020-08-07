@@ -2,35 +2,41 @@
 <html lang="en" xmlns:th = "http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8" />
-    <title>Spa Menu</title>
+    <title>Sign Up</title>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 <body>
 
     <div>
         <form method="post" th:action="@{/user}">
-            <p th:if="${error}" th:text="${error}"></p>
+            <p th:text="${errorMsg}" style="color:red;"></p>
             <div>
                 <label>Username:
-                    <input type="text" name="username" th:value="${username}">
+                    <input type="text" th:field="${user.username}">
                 </label>
+                <p class="errors" th:errors="${user.username}"></p>
             </div>
             <div>
                 <label>Email:
-                    <input type="email" name="email" th:value="${email}">
+                    <input th:field="${user.email}">
                 </label>
+                <p class="errors" th:errors="${user.email}"></p>
             </div>
             <div>
                 <label>Password:
                     <input type="password" name="password">
                 </label>
+                <p class="errors" th:errors="${user.password}"></p>
+                <p class="errors" th:text="${errorPassword}"></p>
             </div>
             <div>
                 <label>
                     Verify Password:
-                    <input type = 'password' name = 'verify'>
+                    <input type="password" name="verify">
                 </label>
+                <p class="errors" th:errors="${user.verify}"></p>
             </div>
+
             <input type = 'submit' value = 'Sign up!'>
         </form>
     </div>
